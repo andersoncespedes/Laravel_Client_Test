@@ -10,4 +10,7 @@ class ClientRepository extends GenericRepository implements IClientRepository{
         $this->_model = $model;
         parent::__construct($this->_model);
     }
+    function getWithCountries() : Collection{
+        return $this->_model->with("countries")->get();
+    }
 }

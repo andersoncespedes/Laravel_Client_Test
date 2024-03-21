@@ -12,6 +12,14 @@ class GenericRepository implements IGenericRepository
     {
         $this->_model->create($data);
     }
+    function delete(int $id) : bool{
+        $entity = $this->_model->findOrDefault($id);
+        if($entity == null ){
+            return false;
+        }
+        $entity->delete();
+        return true;
+    }
     function update(int $id, array $data) : void
     {
         $this->_model->where("id", $id)->update($data);
