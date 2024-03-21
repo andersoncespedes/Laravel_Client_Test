@@ -1,5 +1,7 @@
 <?php
 namespace App\Interface;
-interface IClientRepository extends IGenericRepository{
+use Illuminate\Support\Collection;
 
+interface IClientRepository extends IGenericRepository{
+    function getWithCountries() : Collection;
 }
