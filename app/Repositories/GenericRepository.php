@@ -25,9 +25,9 @@ class GenericRepository implements IGenericRepository
     {
         $this->_model->where("id", $id)->update($data);
     }
-    function listAll() : LengthAwarePaginator
+    function listAll() : Collection
     {
-        return $this->_model->paginate(10);
+        return $this->_model->all();
     }
     function getOne(int $id) : object{
         return $this->_model->findOrFail($id);

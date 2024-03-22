@@ -10,6 +10,6 @@ class ClientRepository extends GenericRepository implements IClientRepository{
         parent::__construct($this->_model);
     }
     function getWithCountries() : LengthAwarePaginator{
-        return $this->_model->with("countries")->paginate(10);
+        return $this->_model->with("countries")->paginate(7);
     }
 }
