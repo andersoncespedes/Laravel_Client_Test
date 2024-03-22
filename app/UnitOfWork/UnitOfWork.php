@@ -1,10 +1,13 @@
 <?php
 namespace App\UnitOfWork;
+//Interfaces
 use App\Interface\IUnitOfWork;
 use App\Interface\ICountryRepository;
 use App\Interface\IClientRepository;
+//Repositories
 use App\Repositories\ClientRepository;
 use App\Repositories\CountryRepository;
+//Models
 use App\Models\Client;
 use App\Models\Country;
 

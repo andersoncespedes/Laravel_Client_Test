@@ -1,7 +1,6 @@
 <?php
 namespace App\Interface;
-use Illuminate\Support\Collection;
-
+use Illuminate\Pagination\LengthAwarePaginator;
 interface IClientRepository extends IGenericRepository{
-    function getWithCountries() : Collection;
+    function getWithCountries() : LengthAwarePaginator;
 }

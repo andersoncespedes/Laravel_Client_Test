@@ -2,6 +2,7 @@
 namespace App\Repositories;
 use App\Interface\IGenericRepository;
 use Illuminate\Support\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 class GenericRepository implements IGenericRepository
 {
     private object $_model;
@@ -13,8 +14,8 @@ class GenericRepository implements IGenericRepository
         $this->_model->create($data);
     }
     function delete(int $id) : bool{
-        $entity = $this->_model->findOrDefault($id);
-        if($entity == null ){
+        $entity = $this->_model->findOrFail($id);
+        if(is_null($entity) ){
             return false;
         }
         $entity->delete();
@@ -24,9 +25,9 @@ class GenericRepository implements IGenericRepository
     {
         $this->_model->where("id", $id)->update($data);
     }
-    function listAll() : Collection
+    function listAll() : LengthAwarePaginator
     {
-        return $this->_model->all();
+        return $this->_model->paginate(10);
     }
     function getOne(int $id) : object{
         return $this->_model->findOrFail($id);
