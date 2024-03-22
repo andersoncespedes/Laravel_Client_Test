@@ -33,8 +33,17 @@
                     <textarea name="address" id="" cols="10" class="form-control">{{ $client->address }}</textarea>
                 </div>
                 <input type="submit" value="Update" class="btn btn-info mt-1">
-                <a href={{route("client_show")}} class="btn btn-warning mt-1">Back</a>
+                <a href={{ route('client_show') }} class="btn btn-warning mt-1">Back</a>
             </form>
+            @error('name')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+            @error('address')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+            @error('phone')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
         </div>
     </div>
 @stop

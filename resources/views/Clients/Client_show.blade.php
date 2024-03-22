@@ -48,8 +48,13 @@
             </tbody>
         </table>
         <div class="table-footer">
-            Total of Rows: <span>{{$clients->total()}}</span>
-           {{$clients->links()}}
+            <div class="total_row">
+                Total of Rows: <span>{{$clients->total()}} </span>
+            </div>
+            <div class="links">
+                {{$clients->links()}}
+            </div>
+
         </div>
 
     </div>

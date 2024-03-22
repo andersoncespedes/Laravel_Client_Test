@@ -1,5 +1,6 @@
 @extends('_shared.layout')
 @section('content')
+
     <div class="card form-container col-md-6">
         <div class="card-header text-center">
             <h2>Save Client</h2>
@@ -27,10 +28,18 @@
                     <label for="address">Address</label>
                     <textarea name="address" class="form-control" id="" cols="10"></textarea>
                 </div>
-                    <input type="submit" value="Save" class="btn btn-success mt-2">
-                    <a href={{route("client_show")}} class="btn btn-warning mt-1">Back</a>
-
+                <input type="submit" value="Save" class="btn btn-success mt-2">
+                <a href={{ route('client_show') }} class="btn btn-warning mt-1">Back</a>
             </form>
+            @error('name')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+            @error('address')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+            @error('phone')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
         </div>
 
     </div>
