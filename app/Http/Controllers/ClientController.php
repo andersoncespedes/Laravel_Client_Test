@@ -7,26 +7,42 @@ use App\Interface\IUnitOfWork;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
+use App\Interface\IMailing;
+
 class ClientController extends Controller
 {
     private IUnitOfWork $_unitOfWork;
     public function __construct(IUnitOfWork $unitOfWork){
         $this->_unitOfWork = $unitOfWork;
     }
-    public function __call($send, $out){
-        return view();
-    }
     public function show() : View{
         $clients = $this->_unitOfWork->Clients()->getWithCountries();
         return view("Clients.Client_show", compact("clients"));
     }
-    public function store(Request $request) : RedirectResponse{
+    public function store(Request $request, IMailing $mail) : RedirectResponse{
         $this->_unitOfWork->Clients()->save($request->all());
+        $mail->Send("edisonprise@gmail.com");
         return redirect("/");
     }
     public function create() : View{
         $countries = $this->_unitOfWork->Countries()->listAll();
         return view("Clients.Client_create", compact("countries"));
+    }
+    public function update(int $id, Request $request) : RedirectResponse{
+        $this->_unitOfWork->Clients()->update($id,
+        [
+            "name" => $request->name,
+            "address" => $request->address,
+            "phone" => $request->phone,
+            "id_country" => $request["id_country"]
+        ]
+        );
+        return redirect("/");
+    }
+    public function edit(int $id) : View{
+        $client = $this->_unitOfWork->Clients()->getOne($id);
+        $countries = $this->_unitOfWork->countries()->listAll();
+        return view("Clients.Client_edit", compact("client", "countries"));
     }
     public function destroy(int $id) : RedirectResponse{
         $this->_unitOfWork->Clients()->delete($id);
