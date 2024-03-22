@@ -23,6 +23,6 @@ class EmailNotification
      */
     public function handle(EmailEvent $event ): void
     {
-        $this->_mail->send($event->email);
+        $this->_mail->SendRegisterMail($event->email);
     }
 }

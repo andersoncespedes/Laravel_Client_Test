@@ -12,8 +12,6 @@ use App\Models\Client;
 use App\Models\Country;
 
 class UnitOfWork implements IUnitOfWork{
-    private ICountryRepository $_country;
-    private IClientRepository  $_client;
     private Client $_client_model;
     private Country $_countries_model;
     public function __construct (Client $client, Country $countries){

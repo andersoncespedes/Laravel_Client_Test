@@ -8,6 +8,9 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 class EventServiceProvider extends ServiceProvider{
+     /**
+     * Register any application Event.
+     */
     protected $listen =
     [
         Registered::class => [
@@ -18,7 +21,9 @@ class EventServiceProvider extends ServiceProvider{
             IMailing::class
         ]
     ];
+     /**
+     * Bootstrap any application Event.
+     */
     public function boot(){
-        parent::boot();
     }
 }

@@ -2,7 +2,6 @@
 namespace App\Repositories;
 use App\Interface\IGenericRepository;
 use Illuminate\Support\Collection;
-use Illuminate\Pagination\LengthAwarePaginator;
 class GenericRepository implements IGenericRepository
 {
     private object $_model;

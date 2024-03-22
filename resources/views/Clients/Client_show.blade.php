@@ -27,7 +27,7 @@
                         <td>{{ $client->name }}</td>
                         <td>{{ $client->phone }}</td>
                         <td>{{ $client->address }}</td>
-                        <td>{{ $clients[0]->countries->name }}</td>
+                        <td>{{ $client->countries->name }}</td>
                         <td class="text-center ">
                             <div class="d-flex justify-content-center">
                                 <form action={{ route('client_destroy', $client->id) }} method="post">
@@ -54,7 +54,6 @@
             <div class="links">
                 {{$clients->links()}}
             </div>
-
         </div>
 
     </div>

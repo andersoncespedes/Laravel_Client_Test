@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Mail;
 class Mailing implements IMailing{
     public function __construct(){
     }
-    function Send(string $email) : void{
+    function SendRegisterMail(string $email) : void{
         Mail::to($email)->send(new RegisterClientMail());
     }
 }
