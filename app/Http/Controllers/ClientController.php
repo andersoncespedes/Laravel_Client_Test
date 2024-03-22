@@ -8,7 +8,9 @@ use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 use App\Interface\IMailing;
-
+use Illuminate\Support\Facades\Event;
+use App\Events\EmailEvent;
+use App\Http\Requests\ClientRequest;
 class ClientController extends Controller
 {
     private IUnitOfWork $_unitOfWork;
@@ -19,16 +21,16 @@ class ClientController extends Controller
         $clients = $this->_unitOfWork->Clients()->getWithCountries();
         return view("Clients.Client_show", compact("clients"));
     }
-    public function store(Request $request, IMailing $mail) : RedirectResponse{
+    public function store(ClientRequest $request) : RedirectResponse{
         $this->_unitOfWork->Clients()->save($request->all());
-        $mail->Send("edisonprise@gmail.com");
+        Event::dispatch(new EmailEvent("teanbronylatino@gmail.com"));
         return redirect("/");
     }
     public function create() : View{
         $countries = $this->_unitOfWork->Countries()->listAll();
         return view("Clients.Client_create", compact("countries"));
     }
-    public function update(int $id, Request $request) : RedirectResponse{
+    public function update(int $id, ClientRequest $request) : RedirectResponse{
         $this->_unitOfWork->Clients()->update($id,
         [
             "name" => $request->name,
