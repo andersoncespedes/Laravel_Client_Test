@@ -24,7 +24,8 @@ class ClientRequest extends FormRequest
         return [
             "name" => "required|max:40|min:3|regex:/^[^0-9]*$/",
             "phone" => "required|max:12|min:6|regex:/^[^a-zA-Z\s]*$/",
-            "address" => "required|max:120|min:10"
+            "address" => "required|max:120|min:10",
+            "email" => "regex:/^[^\s@]+@[^\s@]+\.[^\s@]+$/"
         ];
     }
 }

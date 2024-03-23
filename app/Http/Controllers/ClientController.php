@@ -40,8 +40,13 @@ class ClientController extends Controller
      */
     public function store(ClientRequest $request): RedirectResponse
     {
-        $this->_unitOfWork->Clients()->save($request->all());
-        Event::dispatch(new EmailEvent("teanbronylatino@gmail.com"));
+        $this->_unitOfWork->Clients()->save([
+            "name" => $request->name,
+            "address" => $request->address,
+            "phone" => $request->phone,
+            "id_country" => $request["id_country"]
+        ]);
+        Event::dispatch(new EmailEvent($request->email));
         return redirect("/");
     }
     /**
