@@ -3,7 +3,6 @@
 - PHP >= 8.2
 - Composer
 - MySQL
-- Redis (for queue driver)
 
 ## Installation
 
@@ -26,11 +25,11 @@
     php artisan db:seed
     ```
 ## Exceute the Project
-- Initialize server
+1. Initialize server
     ```bash
-    php artisan db:seed
+    php artisan serve
     ```
-- Initialize queue work
+2. Initialize queue work
     ```bash
      php artisan queue:work
     ```
