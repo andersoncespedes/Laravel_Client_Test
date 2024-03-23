@@ -5,9 +5,7 @@
             <h2>Update Client</h2>
         </div>
         <div class="card-body p-3">
-
-
-            <form method="POST" class="form row" action={{ route('client_update', $client->id) }}>
+            <form method="POST" class="form row" id="form" action={{ route('client_update', $client->id) }}>
                 @csrf
                 @method('PUT')
                 <div class="form-group col-md-6">
@@ -16,7 +14,7 @@
                 </div>
                 <div class="form-group col-md-6">
                     <label for="phone">Phone</label>
-                    <input type="text" name="phone" class="form-control" value={{ $client->phone }}
+                    <input type="number" name="phone" class="form-control" value={{ $client->phone }}
                         placeholder="Phone">
                 </div>
                 <div class="form-group">
@@ -36,14 +34,25 @@
                 <a href={{ route('client_show') }} class="btn btn-warning mt-1">Back</a>
             </form>
             @error('name')
-                <div class="alert alert-danger">{{ $message }}</div>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ $message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+
             @enderror
             @error('address')
-                <div class="alert alert-danger">{{ $message }}</div>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ $message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
             @enderror
             @error('phone')
-                <div class="alert alert-danger">{{ $message }}</div>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ $message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
             @enderror
         </div>
     </div>
 @stop
+
